@@ -2,25 +2,30 @@ package smsprovider
 
 import "io"
 
-type ConfigParser interface {
-	ParseConfig(io.Reader) error
+type ConfigReader interface {
+	ReadConfig(io.Reader) error
+}
+
+type Scheduler interface {
+	ScheduleMessages(string, Request) Response
 }
 
 type MessageSender interface {
-	SendMessage(SendMessageRequest) SendMessageResponse
+	SendMessages(Request) Response
 }
 
 type MessageQuerier interface {
-	QueryMessageStatus(QueryMessageStatusRequest) QueryMessageStatusResponse
+	QueryMessagesStatus(Request) Response
 }
 
 type MessageReceiver interface {
-	ReceiveMessages() ReceiveMessageResponse
+	ReceiveMessages(Request) Response
 }
 
 type MessageProvider interface {
-	ConfigParser
+	ConfigReader
 	MessageSender
 	MessageQuerier
 	MessageReceiver
+	Scheduler
 }

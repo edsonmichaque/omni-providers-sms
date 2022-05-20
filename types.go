@@ -2,15 +2,19 @@ package smsprovider
 
 type Partner struct{}
 
-type SendMessageResponse struct{}
+func Bool(b bool) *bool {
+	return &b
+}
 
-type SendMessageRequest struct{}
+type Response struct {
+	NotImplemented *bool
+	Messages       []Message `json:"messages,omitempty"`
+}
 
-type QueryMessageStatusRequest struct{}
-
-type QueryMessageStatusResponse struct{}
-
-type ReceiveMessageResponse struct{}
+type Request struct {
+	Messages []Message `json:"messages,omitempty"`
+	Schedule *string   `json:"schedule"`
+}
 
 type Status struct {
 	Code        StatusCode   `json:"code"`
@@ -22,23 +26,34 @@ type Destination struct {
 	To string `json:"to"`
 }
 
-type MessageStats struct {
-	Count string `json:"count"`
+type Quotation struct {
+	Amount   string      `json:"amount"`
+	Currency string      `json:"currency"`
+	Count    int         `json:"count"`
+	Size     MessageSize `json:"size"`
 }
 
-type Quotation struct {
-	Amount   string `json:"amount"`
-	Currency string `json:"currency"`
+type MessageSize struct {
+	Characters int `json:"characters"`
+	Bytes      int `json:"bytes"`
+}
+
+type M struct {
+	MessageID         string `json:"message_id,omitempty"`
+	ProviderMessageID string `json:"provider_message_id,omitempty"`
+	SubmittedAt       string `json:"submitted_at,omitempty"`
+	DoneAt            string `json:"done_at,omitempty"`
+	Status            Status `json:"status,omitempty"`
 }
 
 type Message struct {
 	ID           string        `json:"id,omitempty"`
+	ProviderID   string        `json:"provider_id,omitempty"`
 	Text         string        `json:"text,omitempty"`
 	From         string        `json:"from,omitempty"`
 	SubmittedAt  string        `json:"submitted_at,omitempty"`
 	DoneAt       string        `json:"done_at,omitempty"`
 	Destinations []Destination `json:"destinations,omitempty"`
 	Status       Status        `json:"status,omitempty"`
-	Stats        MessageStats  `json:"stats,omitempty"`
 	Quotation    Quotation     `json:"quotation,omitempty"`
 }

@@ -1,7 +1,6 @@
 package smpp
 
 import (
-	"encoding/json"
 	"io"
 
 	smsprovider "github.com/edsonmichaque/stencil-sms-providers"
@@ -16,23 +15,32 @@ type Provider struct {
 	config Config
 }
 
-func (p *Provider) Parse(r io.Reader) error {
-	data, err := io.ReadAll(r)
-	if err != nil {
-		return err
-	}
+var _ smsprovider.MessageProvider = &Provider{}
 
-	if err := json.Unmarshal(data, &p.config); err != nil {
-		return err
-	}
-
+func (p *Provider) ReadConfig(r io.Reader) error {
 	return nil
 }
 
-func (p *Provider) Send(s smsprovider.SendMessageRequest) smsprovider.SendMessageResponse {
-	return smsprovider.SendMessageResponse{}
+func (p *Provider) SendMessages(s smsprovider.Request) smsprovider.Response {
+	return smsprovider.Response{
+		NotImplemented: smsprovider.Bool(false),
+	}
 }
 
-func (p *Provider) QueryStatus(s smsprovider.QueryMessageStatusRequest) smsprovider.QueryMessageStatusResponse {
-	return smsprovider.QueryMessageStatusResponse{}
+func (p *Provider) QueryMessagesStatus(s smsprovider.Request) smsprovider.Response {
+	return smsprovider.Response{
+		NotImplemented: smsprovider.Bool(false),
+	}
+}
+
+func (p *Provider) ScheduleMessages(string, smsprovider.Request) smsprovider.Response {
+	return smsprovider.Response{
+		NotImplemented: smsprovider.Bool(false),
+	}
+}
+
+func (p *Provider) ReceiveMessages(s smsprovider.Request) smsprovider.Response {
+	return smsprovider.Response{
+		NotImplemented: smsprovider.Bool(false),
+	}
 }
