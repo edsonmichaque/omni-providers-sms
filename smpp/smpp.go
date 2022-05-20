@@ -3,7 +3,7 @@ package smpp
 import (
 	"io"
 
-	smsprovider "github.com/edsonmichaque/stencil-sms-providers"
+	smsprovider "github.com/edsonmichaque/stencil-providers-sms"
 )
 
 type Config struct {
