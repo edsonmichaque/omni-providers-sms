@@ -22,10 +22,12 @@ type MessageReceiver interface {
 	ReceiveMessages(Request) Response
 }
 
-type MessageProvider interface {
+type Provider interface {
 	ConfigReader
 	MessageSender
 	MessageQuerier
 	MessageReceiver
 	Scheduler
 }
+
+type ProviderBuilder func() Provider

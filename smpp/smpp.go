@@ -11,11 +11,15 @@ type Config struct {
 	Password string `json:"password"`
 }
 
+type ProviderOption func(*Provider)
+
 type Provider struct {
 	config Config
 }
 
-var _ smsprovider.MessageProvider = &Provider{}
+func New() smsprovider.Provider {
+	return &Provider{}
+}
 
 func (p *Provider) ReadConfig(r io.Reader) error {
 	return nil
@@ -43,4 +47,8 @@ func (p *Provider) ReceiveMessages(s smsprovider.Request) smsprovider.Response {
 	return smsprovider.Response{
 		NotImplemented: smsprovider.Bool(false),
 	}
+}
+
+func (p *Provider) SetLogger(l smsprovider.Logger) {
+
 }
