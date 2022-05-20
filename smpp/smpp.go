@@ -48,7 +48,3 @@ func (p *Provider) ReceiveMessages(s smsprovider.Request) smsprovider.Response {
 		NotImplemented: smsprovider.Bool(false),
 	}
 }
-
-func (p *Provider) SetLogger(l smsprovider.Logger) {
-
-}
