@@ -40,3 +40,9 @@ func (p *Provider) ScheduleMessages(string, smsprovider.Request) smsprovider.Res
 func (p *Provider) ReceiveMessages(s smsprovider.Request) smsprovider.Response {
 	return smsprovider.ResponseNotImplemented
 }
+
+func (p *Provider) Capabilities() smsprovider.Capabilities {
+	return smsprovider.Capabilities{
+		SendMessage: true,
+	}
+}

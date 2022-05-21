@@ -7,7 +7,7 @@ func Bool(b bool) *bool {
 }
 
 type Response struct {
-	Error    Error           `json:"error"`
+	Error    *Error          `json:"error"`
 	Messages []MessageStatus `json:"messages,omitempty"`
 }
 

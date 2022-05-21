@@ -24,10 +24,24 @@ type MessageReceiver interface {
 	ReceiveMessages(Request) Response
 }
 
+type Info interface {
+	ID() string
+	Name() string
+	Version() string
+}
+
+type Capabilities struct {
+	SendMessage         bool
+	ScheduleMessages    bool
+	QueryMessagesStatus bool
+	ReceiveMessages     bool
+}
+
 type Provider interface {
 	ConfigReader
 	MessageSender
 	MessageQuerier
 	MessageReceiver
 	Scheduler
+	Capabilities() Capabilities
 }

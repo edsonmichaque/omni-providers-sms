@@ -31,13 +31,13 @@ const (
 
 var (
 	ResponseNotImplemented = Response{
-		Error: Error{
+		Error: &Error{
 			Code: ErrorNotImplemented,
 		},
 	}
 
 	ResponseNotSupported = Response{
-		Error: Error{
+		Error: &Error{
 			Code: ErrorNotSupported,
 		},
 	}
