@@ -17,34 +17,26 @@ type Provider struct {
 	config Config
 }
 
-func New() smsprovider.Provider {
+func New() *Provider {
 	return &Provider{}
 }
 
-func (p *Provider) ReadConfig(r io.Reader) error {
+func (p *Provider) ParseConfig(r io.Reader) error {
 	return nil
 }
 
 func (p *Provider) SendMessages(s smsprovider.Request) smsprovider.Response {
-	return smsprovider.Response{
-		NotImplemented: smsprovider.Bool(false),
-	}
+	return smsprovider.ResponseNotImplemented
 }
 
 func (p *Provider) QueryMessagesStatus(s smsprovider.Request) smsprovider.Response {
-	return smsprovider.Response{
-		NotImplemented: smsprovider.Bool(false),
-	}
+	return smsprovider.ResponseNotImplemented
 }
 
 func (p *Provider) ScheduleMessages(string, smsprovider.Request) smsprovider.Response {
-	return smsprovider.Response{
-		NotImplemented: smsprovider.Bool(false),
-	}
+	return smsprovider.ResponseNotImplemented
 }
 
 func (p *Provider) ReceiveMessages(s smsprovider.Request) smsprovider.Response {
-	return smsprovider.Response{
-		NotImplemented: smsprovider.Bool(false),
-	}
+	return smsprovider.ResponseNotImplemented
 }

@@ -7,8 +7,12 @@ func Bool(b bool) *bool {
 }
 
 type Response struct {
-	NotImplemented *bool
-	Messages       []Message `json:"messages,omitempty"`
+	Error    Error           `json:"error"`
+	Messages []MessageStatus `json:"messages,omitempty"`
+}
+
+type Error struct {
+	Code ErrorCode `json:"code,omitempty"`
 }
 
 type Request struct {
@@ -17,9 +21,9 @@ type Request struct {
 }
 
 type Status struct {
-	Code        StatusCode   `json:"code"`
-	Reason      StatusReason `json:"reason"`
-	Description string       `json:"description"`
+	Code        StatusCode `json:"code"`
+	Reason      ReasonCode `json:"reason"`
+	Description string     `json:"description"`
 }
 
 type Destination struct {
@@ -38,7 +42,7 @@ type MessageSize struct {
 	Bytes      int `json:"bytes"`
 }
 
-type M struct {
+type MessageStatus struct {
 	MessageID         string `json:"message_id,omitempty"`
 	ProviderMessageID string `json:"provider_message_id,omitempty"`
 	SubmittedAt       string `json:"submitted_at,omitempty"`

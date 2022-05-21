@@ -2,8 +2,10 @@ package smsprovider
 
 import "io"
 
+type ProviderBuilder func() Provider
+
 type ConfigReader interface {
-	ReadConfig(io.Reader) error
+	ParseConfig(io.Reader) error
 }
 
 type Scheduler interface {
@@ -29,5 +31,3 @@ type Provider interface {
 	MessageReceiver
 	Scheduler
 }
-
-type ProviderBuilder func() Provider
