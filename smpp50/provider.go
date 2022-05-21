@@ -41,8 +41,8 @@ func (p *Provider) ReceiveMessages(s smsprovider.Request) smsprovider.Response {
 	return smsprovider.ResponseNotImplemented
 }
 
-func (p *Provider) Capabilities() smsprovider.Capabilities {
-	return smsprovider.Capabilities{
-		SendMessage: true,
+func (p *Provider) Capabilities() []smsprovider.Capability {
+	return []smsprovider.Capability{
+		smsprovider.CapabilityQueryMessagesStatus,
 	}
 }

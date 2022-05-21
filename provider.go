@@ -24,18 +24,24 @@ type MessageReceiver interface {
 	ReceiveMessages(Request) Response
 }
 
+type Capabilities interface {
+	Capabilities() []Capability
+}
+
 type Info interface {
 	ID() string
 	Name() string
 	Version() string
 }
 
-type Capabilities struct {
-	SendMessage         bool
-	ScheduleMessages    bool
-	QueryMessagesStatus bool
-	ReceiveMessages     bool
-}
+type Capability string
+
+const (
+	CapabilitySendMessage         = Capability("SEND_MESSAGE")
+	CapabilityScheduleMessages    = Capability("SCHEDULE_MESSAGES")
+	CapabilityQueryMessagesStatus = Capability("QUERY_MESSAGES")
+	CapabilityReceiveMessages     = Capability("RECEIVE_MESSAGES")
+)
 
 type Provider interface {
 	ConfigReader
@@ -43,5 +49,5 @@ type Provider interface {
 	MessageQuerier
 	MessageReceiver
 	Scheduler
-	Capabilities() Capabilities
+	Capabilities
 }
