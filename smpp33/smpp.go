@@ -1,4 +1,4 @@
-package smpp
+package smpp33
 
 import (
 	"io"
